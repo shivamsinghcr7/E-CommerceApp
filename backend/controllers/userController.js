@@ -57,6 +57,7 @@ const loginUser = asyncHandler(async (req, res) => {
       res.status(200).json({
         username: existingUser.username,
         email: existingUser.email,
+        isAdmin: existingUser.isAdmin,
         message: "Login Successful",
       });
       return;
@@ -72,9 +73,11 @@ const loginUser = asyncHandler(async (req, res) => {
 
 // Logout the user
 const logoutUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt-eComApp", "", {
+  res.cookie("jwt-eComAppJWT", "", {
     httpOnly: true,
     expires: new Date(0),
+    path: "/",
+    sameSite: "strict",
   });
   res.status(201).json({
     message: "Logged out successfully",
@@ -99,6 +102,8 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
 // Update logged user profile
 const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  // const existingUser = await User.findOne(req.user.email);
+  // console.log("Old Password: ",req.user);
 
   if (user) {
     //Setting new username provided by user
@@ -106,6 +111,8 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
+      // const isPreviousPasswordValid = await bcrypt.compare(existingUser.password, req.body.oldpassword);
+
       const encrytedPass = await hashingPassword(req.body.password);
       // console.log("Hashed Password: ",encrytedPass)
       user.password = encrytedPass;

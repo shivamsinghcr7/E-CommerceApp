@@ -11,6 +11,7 @@ const generateToken = (res, userID) => {
     secure: process.env.NODE_ENV !== "development",
     sameSite: "strict",
     maxAge: 2 * 24 * 60 * 60 * 1000,
+    path: "/"
   });
 
   return token;

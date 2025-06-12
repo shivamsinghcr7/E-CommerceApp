@@ -5,7 +5,7 @@ import asyncHandler from "./asyncHandler.js";
 const authenticate = asyncHandler(async (req, res, next) => {
   let token;
 
-  // Read the JWT from the 'jwt-eComApp'
+  // Read the JWT from the 'jwt-eComAppJWT'
   token = req.cookies.eComAppJWT;
 
   if (token) {
