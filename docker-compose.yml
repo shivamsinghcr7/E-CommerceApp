@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend # Build from frontend/Dockerfile
+    ports:
+      - "3000:3000" # Map React port
+    depends_on:
+      - backend # Wait for backend to be up
+    restart: unless-stopped # Auto-restart if container crashes
+
+  backend:
+    build: ./backend # Build from backend/Dockerfile
+    ports:
+      - "5000:5000" # Map backend API port
+    restart: unless-stopped # Keep backend running
+    # If you add a DB later, you'd use depends_on here
+
+# (Optional) Define named volumes or databases here if needed\
+mongo:
+  image: mongo
+  volumes:
+    - mongo-data:/data/db
+  ports:
+    - "27017:27017"
+
+volumes:
+  mongo-data:

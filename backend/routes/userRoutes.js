@@ -10,7 +10,7 @@ import {
   updateCurrentUserProfile,
   deleteUserById,
   getUserById,
-  updateUserById
+  updateUserById,
 } from "../controllers/userController.js";
 
 import { authenticate, authorisedAdmin } from "../middleware/authMiddleware.js";
@@ -22,7 +22,7 @@ router
   .route("/")
   .post(createUser)
   .get(authenticate, authorisedAdmin, getAllUsers);
-router.route("/login").post(authenticate, loginUser);
+router.route("/login").post(loginUser);
 router.post("/logout", logoutUser);
 
 router
@@ -30,6 +30,10 @@ router
   .get(authenticate, getCurrentUserProfile)
   .put(authenticate, updateCurrentUserProfile);
 
-router.route("/:id").delete(authenticate, authorisedAdmin, deleteUserById).get(authenticate, authorisedAdmin, getUserById).put(authenticate, authorisedAdmin, updateUserById);
+router
+  .route("/:id")
+  .delete(authenticate, authorisedAdmin, deleteUserById)
+  .get(authenticate, authorisedAdmin, getUserById)
+  .put(authenticate, authorisedAdmin, updateUserById);
 
 export default router;

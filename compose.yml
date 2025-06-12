@@ -1,0 +1,39 @@
+# # Specify the Compose file format version (compatible with Docker 18.06+)
+# version: "3.8"
+
+# # Define all services (containers) in this application
+# tservices:
+#   # React frontend service
+#   client:
+#     # Build the client image using the Dockerfile in the ./client directory
+#     build: ./frontend
+#     # Map host port 3000 to container port 3000 for accessing the React app
+#     ports:
+#       - "5173:3000"
+#     # Ensure the server service starts before the client
+#     depends_on:
+#       - backend
+
+#   # Node.js backend service
+#   backend:
+#     # Build the server image using the Dockerfile in the ./server directory
+#     build: ./backend
+#     # Map host port 5000 to container port 5000 for the API
+#     ports:
+#       - "5000:5000"
+#     # Ensure the MongoDB service starts before the server
+#     depends_on:
+#       - mongo
+
+#   # MongoDB database service
+#   mongo:
+#     # Use the official MongoDB image from Docker Hub
+#     image: mongo
+#     # Mount a named volume to persist MongoDB data
+#     volumes:
+#       - mongo-data:/data/db
+
+# # Define named volumes to persist data between container restarts
+# volumes:
+#   # Volume for MongoDB data storage
+#   mongo-data: 
