@@ -17,6 +17,7 @@ import Cart from "./pages/User/Cart.jsx";
 import Favourite from "./pages/User/Favourite.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
 import Dashboard from "./pages/Admin/Dashboard.jsx";
+import UsersList from "./pages/Admin/UsersList.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -35,10 +36,10 @@ const routes = createBrowserRouter(
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminRoute />}>
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="userlist" element={<UsersList />} />
         <Route path="productlist" element={<Dashboard />} />
         <Route path="categorylist" element={<Dashboard />} />
         <Route path="orderlist" element={<Dashboard />} />
-        <Route path="userlist" element={<Dashboard />} />
       </Route>
     </Route>
   )
