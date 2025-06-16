@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
+
 import {
   useGetUsersQuery,
-  useGetUserDetailsQuery,
   useDeleteUserMutation,
   useUpdateUserMutation,
 } from "../../redux/api/usersApiSlice";
@@ -14,11 +12,6 @@ import { toast } from "react-toastify";
 import Message from "../../components/Message.jsx";
 
 const UsersList = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
   const [deleteUser] = useDeleteUserMutation();
