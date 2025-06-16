@@ -6,7 +6,9 @@ import {
   useUpdateUserMutation,
 } from "../../redux/api/usersApiSlice";
 import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
-import { FaPowerOff } from "react-icons/fa6";
+import { FaSkullCrossbones } from "react-icons/fa6";
+import { ImCross } from "react-icons/im";
+
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 import Message from "../../components/Message.jsx";
@@ -46,7 +48,7 @@ const UsersList = () => {
   };
 
   const deleteUserHandler = async (userid) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("Do you really want to delete this user permanently?")) {
       try {
         await deleteUser(userid);
         window.location.reload();
@@ -106,7 +108,7 @@ const UsersList = () => {
                           onClick={() => cancelEditHandler()}
                           className="ml-2 bg-red-500 text-white py-2 px-4 rounded-lg"
                         >
-                          <FaPowerOff />
+                          <ImCross />
                         </button>
                       </div>
                     ) : (
@@ -141,7 +143,7 @@ const UsersList = () => {
                           onClick={() => cancelEditHandler()}
                           className="ml-2 bg-red-500 text-white py-2 px-4 rounded-lg"
                         >
-                          <FaPowerOff />
+                          <ImCross />
                         </button>
                       </div>
                     ) : (
@@ -171,7 +173,7 @@ const UsersList = () => {
                           onClick={() => deleteUserHandler(user._id)}
                           className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-semibold"
                         >
-                          <FaTrash />
+                          <FaSkullCrossbones />
                         </button>
                       </div>
                     )}
