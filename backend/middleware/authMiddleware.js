@@ -28,7 +28,9 @@ const authorisedAdmin = asyncHandler(async (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
   } else {
-    res.status(401).send("Not authorised for admin access.");
+    res.status(401);
+    throw new Error("Not authorised for admin access.");
+    // res.status(401).json({error: "Not authorised for admin access."});
   }
 });
 
