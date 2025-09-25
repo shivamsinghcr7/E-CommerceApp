@@ -16,3 +16,23 @@ background-repeat: no-repeat; /_ Prevents the image from repeating _/
 width: 100vw; /_ 100% of the viewport width _/
 height: 100vh; /_ 100% of the viewport height _/
 color: white;
+
+# Router Learning
+router.route("/categories").get(getAllCategories);   //static route
+router
+  .route("/:categoryId")    // Dynamic route
+  .put(authenticate, authorisedAdmin, updateCategory)
+  .delete(authenticate, authorisedAdmin, deleteCategory)
+  .get(getCategoryById);
+
+- Always define static route above dymanic route
+
+What to do	
+    - Move /categories route above /:categoryId	
+    - Validate ObjectId with mongoose.Types.ObjectId.isValid()
+    - Add a logger middleware to trace incoming URLs	
+Why? 
+    - Prevents Express from matching "categories" as an ID
+    - Avoids runtime CastError
+    - Debug unexpected route matches
+

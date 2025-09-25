@@ -5,7 +5,6 @@ import { useLoginMutation } from "../../redux/api/usersApiSlice.js";
 import { setCredentials } from "../../redux/features/auth/authSlice.js";
 import { toast } from "react-toastify";
 import Loader from "../../components/Loader.jsx";
-import { Images } from "../../redux/constants.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -87,15 +86,6 @@ const Login = () => {
             </Link>
           </p>
         </div>
-      </div>
-
-      <div className="mr-4 mt-[9rem] rounded-2xl w-2/5 px-4 py-4 border bg-black hover:bg-pink-500">
-        <img
-          src={Images.background_1}
-          alt="bg-image"
-          width="500px"
-          className="rounded-2xl w-full border-pink-500 border-2"
-        />
       </div>
     </section>
   );
