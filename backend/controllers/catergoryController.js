@@ -124,6 +124,27 @@ const getAllCategories = asyncHandler(async (req, res) => {
   }
 });
 
+/* 
+    @desc: Get Category by ID
+    @method: GET
+    @path: /api/category/id
+*/
+const getCategoryById = asyncHandler(async (req, res) => {
+  try {
+    const specificCategory = await Category.findOne({
+      _id: req.params.categoryId,
+    });
+    res.status(200).json(specificCategory);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error.message);
+  }
+});
 
-
-export { createCategory, updateCategory, deleteCategory, getAllCategories };
+export {
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getAllCategories,
+  getCategoryById,
+};
